@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<map xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://validation.gdn.giants-software.com/xml/fs22/1.5.0.0/fillTypes.xsd"> 
+    <fillTypes>    
+        <fillType name="PRAIRIE" title="$l10n_fillType_grass" showOnPriceTable="false" unitShort="$l10n_unit_literShort">
+            <physics massPerLiter="0.30" maxPhysicalSurfaceAngle="50" />
+            <economy pricePerLiter="0" />
+            <effects fruitSmokeColor="0.0970 0.1130 0.0171 1.0000"/>
+            <image      hud     ="$dataS/menu/hud/fillTypes/hud_fill_grass.png" />
+        </fillType> 
+        <fillType name="PRAIRIETALL" title="$l10n_fillType_grass" showOnPriceTable="false" unitShort="$l10n_unit_literShort">
+            <physics massPerLiter="0.30" maxPhysicalSurfaceAngle="50" />
+            <economy pricePerLiter="0" />
+            <effects fruitSmokeColor="0.0970 0.1130 0.0171 1.0000"/>
+            <image      hud     ="$dataS/menu/hud/fillTypes/hud_fill_grass.png" />
+        </fillType>
+    </fillTypes>
+</map>

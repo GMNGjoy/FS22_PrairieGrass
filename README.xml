@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<installationInstructions>
+    <copy>
+        <!-- 
+            Copy the entire prairie/ directory from this prefab to your map directory at the same level as your map.xml file
+            
+            example: 
+                copy priarie/* maps/mapUS/foliage/prairie
+
+            If you have or choose a different folder path, then make sure to update the same path below later on
+        -->
+    </copy>
+
+    <!-- 
+        Once the files are copied, the image path for each of the brushes (prairieBrush.xml & prarireBrushTall.xml)
+        need to have their image paths updated to reflect your mod folder
+    -->
+    <update>
+        <storeData>
+            <image>maps/mapUS/foliage/prairie/store_prairieGrass.dds</image>
+        </storeData>
+        <storeData>
+            <image>maps/mapUS/foliage/prairie/store_prairieGrassTall.dds</image>
+        </storeData>
+    </update>
+
+    <!--
+        Copy the `<l10n>` translations for the brush names from the mod `modDesc.xml` and merge into your map's
+        `modDesc.xml` file.
+
+        ??: The brush names that show up in-game reference these translations; If you don't care, you can manually
+        update these names directly into the brushes that you just edited in the previous step
+    -->
+    <modDesc filename="modDesc.xml">
+        <l10n>
+            <text name="shopItem_prairieGrass">
+                <en>Prairie Grass</en>
+            </text>
+            <text name="shopItem_prairieGrassTall">
+                <en>Tall Prairie Grass</en>
+            </text>
+        </l10n>
+    </modDesc>
+    
+    <!--
+        Add these following two lines to your storeItems.xml file
+    -->
+    <store filename="storeItems.xml">
+        <storeItem xmlFilename="maps/mapUS/foliage/prairie/prairieBrush.xml" />
+        <storeItem xmlFilename="maps/mapUS/foliage/prairie/prairieBrushTall.xml" />
+    </store>
+
+
+    <!--
+        Add prairieBrush and prairieBrushTall brushes directly to the i3d file.
+        
+        ??: This enables it so that the two new foliage layers can be paintable both in the Giants Editor and in-game
+    -->    
+    <i3d filename="map.i3d">
+        <!-- Find this line (it may be meadowFR or meadowDLC depending on your map, and may not contain the $data/ folder in the path) -->
+        <File fileId="335" filename="$data/foliage/meadow/meadowUS.xml"/>
+        <!-- We're going to add two new Files at this location (not that this file doesn't need the maps/mapUS/ path -->
+        <!-- The fileIds here just need to not conflict with the other files in this file. If you give them big numbers,
+            then open/save the map.i3d file in GE, it will re-number them automatically. -->
+        <File fileId="10336" filename="foliage/prairie/prairieGrass.xml"/>
+        <File fileId="10337" filename="foliage/prairie/prairieGrassTall.xml"/>
+
+        <!-- Find this line a little farther down the file -->
+        <FoliageType name="meadow" foliageXmlId="335"/>
+        <!-- We're going to add two new FoliageType at this location - note that the Id's must match the ids you added above-->
+        <FoliageType name="prairie" foliageXmlId="10336"/>
+        <FoliageType name="prairieTall" foliageXmlId="10337"/>
+    </i3d>
+
+    <!--
+        Add the following paintableFoliage lines to your map.xml file;
+        
+        ??: This links the new brushes we created in the last step with the map file itself. This part is CRITICAL
+        for the brushes to work
+    -->
+    <map filename="map.xml">
+        <paintableFoliages>
+            <!-- Add these two lines to your <paintableFoliages> block -->
+            <paintableFoliage layerName="prairie" startChannel="0" numStateChannels="4" />
+            <paintableFoliage layerName="prairieTall" startChannel="0" numStateChannels="4" />
+            <!-- /end paintableFoliages add -->
+        </paintableFoliages>
+    </map>
+
+    <!--
+        Depending on how your map is structured, you may or not have your own version of the following files
+
+            maps_fillTypes.xml
+            maps_fruitTypes.xml
+            maps_growth.xml
+        
+        For these new brushes, you'll need all three of those files customized in your map directory.
+
+        if your map.xml looks like this:
+
+            <fillTypes filename="$data/maps/mapUS/maps_fillTypes.xml" />
+
+        just copy the specific file from your game's $data directory to your map directory and update
+        the line above to look like this
+        
+            <fillTypes filename="maps/mapUS/maps_fillTypes.xml" />
+
+        obviously replacing maps/mapUS with your map directory structure.
+    -->
+
+    <!-- Add the following fillTypes to your maps_fillTypes.xml file; 
+        
+        ??: This creates a custom type that we can convert to hay -->
+    <fillTypes>
+        <fillType name="PRAIRIE" title="$l10n_fillType_grass" showOnPriceTable="false" unitShort="$l10n_unit_literShort">
+            <physics massPerLiter="0.30" maxPhysicalSurfaceAngle="50" />
+            <economy pricePerLiter="0" />
+            <effects fruitSmokeColor="0.0970 0.1130 0.0171 1.0000"/>
+            <image      hud     ="$dataS/menu/hud/fillTypes/hud_fill_grass.png" />
+        </fillType> 
+        <fillType name="PRAIRIETALL" title="$l10n_fillType_grass" showOnPriceTable="false" unitShort="$l10n_unit_literShort">
+            <physics massPerLiter="0.30" maxPhysicalSurfaceAngle="50" />
+            <economy pricePerLiter="0" />
+            <effects fruitSmokeColor="0.0970 0.1130 0.0171 1.0000"/>
+            <image      hud     ="$dataS/menu/hud/fillTypes/hud_fill_grass.png" />
+        </fillType>
+    </fillTypes>
+
+    <!--
+        Add the following fruitTypes to your maps_fruitTypes.xml file;
+        
+        ??: This creates the fruit types, their harvest / cultivation cycles, and defines how much we get when harvesting
+    -->
+    <fruitTypes>
+        <fruitType name="prairie" shownOnMap="false" useForFieldJob="false">
+            <general startStateChannel="0" numStateChannels="4" />
+            <cultivation needsSeeding="false" allowsSeeding="false" directionSnapAngle="0" alignsToSun="false" seedUsagePerSqm="0.03" plantsWeed="false"/>
+            <harvest minHarvestingGrowthState="3" maxHarvestingGrowthState="4" cutState="5" allowsPartialGrowthState="true" literPerSqm="3.7"  />
+            <growth witheredState="4" numGrowthStates="4" growthStateTime="36000000" resetsSpray="true" growthRequiresLime="false" regrows="true" firstRegrowthState="1" />
+            <windrow name="drygrass_windrow" litersPerSqm="4.7" />
+            <options lowSoilDensityRequired="false" increasesSoilDensity="false" consumesLime="false" startSprayState="1" />
+            <cropCare maxWeederState="0" maxWeederHoeState="0" />
+            <mapColors default="0.0423 0.1221 0.0252 1" colorBlind="1.0000 0.9473 0.0369 1"/>
+            <destruction canBeDestroyed="true" />
+            <mulcher state="5" hasChopperGroundLayer="false"/>
+        </fruitType>
+        <fruitType name="prairieTall" shownOnMap="false" useForFieldJob="false">
+            <general startStateChannel="0" numStateChannels="4" />
+            <cultivation needsSeeding="false" allowsSeeding="false" directionSnapAngle="0" alignsToSun="false" seedUsagePerSqm="0.03" plantsWeed="false"/>
+            <harvest minHarvestingGrowthState="3" maxHarvestingGrowthState="4" cutState="5" allowsPartialGrowthState="true" literPerSqm="4.0"  />
+            <growth witheredState="4" numGrowthStates="4" growthStateTime="36000000" resetsSpray="true" growthRequiresLime="false" regrows="true" firstRegrowthState="1" />
+            <windrow name="drygrass_windrow" litersPerSqm="5.24" />
+            <options lowSoilDensityRequired="false" increasesSoilDensity="false" consumesLime="false" startSprayState="1" />
+            <cropCare maxWeederState="0" maxWeederHoeState="0" />
+            <mapColors default="0.0423 0.1221 0.0252 1" colorBlind="1.0000 0.9473 0.0369 1"/>
+            <destruction canBeDestroyed="true" />
+            <mulcher state="5" hasChopperGroundLayer="false"/>
+        </fruitType>
+    </fruitTypes>
+
+
+    <!--
+        Add the following fruitTypeConverter also to your maps_fruitTypes.xml file;
+        
+        ??: This is the "Magic" that allows the mower to convert the PrairieGrass directly into hay
+    -->
+    <fruitTypeConverters>
+        <fruitTypeConverter name="MOWER">
+            <converter from="PRAIRIE"   to="DRYGRASS_WINDROW" factor="1.0" windrowFactor="1.0" />
+            <converter from="PRAIRIETALL"   to="DRYGRASS_WINDROW" factor="1.0" windrowFactor="1.0" />
+        </fruitTypeConverter>
+    </fruitTypeConverters>
+
+
+    <!--
+        Add the following fruits to your your maps_growth.xml file;
+        
+        ??: This sets up when and how the new crop grows; adjust if you like, but these blocks exactly replicate
+        the MEADOW fruit growth cycles, with a normal knockback in wintertime
+    -->
+    <growth>
+        <seasonal>
+            <!-- prairie has 4 states -->
+            <fruit name="PRAIRIE" initialState="1-4">
+                <period index="1" plantingAllowed="true">
+                    <update range="1" add="1" />
+                    <update range="3" add="1" />
+                    <update range="5" set="2" />
+                </period>
+                <period index="2" plantingAllowed="true">
+                    <update range="1-3" add="1" />
+                    <update range="5" set="2" />
+                </period>
+                <period index="3" plantingAllowed="true">
+                    <update range="1-3" add="1" />
+                    <update range="5" set="2" />
+                </period>
+                <period index="4" plantingAllowed="true">
+                    <update range="1-3" add="1" />
+                    <update range="5" set="2" />
+                </period>
+                <period index="5" plantingAllowed="true">
+                    <update range="1-3" add="1" />
+                    <update range="5" set="2" />
+                </period>
+                <period index="6" plantingAllowed="true">
+                    <update range="1-3" add="1" />
+                    <update range="5" set="2" />
+                </period>
+                <period index="7" plantingAllowed="true">
+                    <update range="1-3" add="1" />
+                    <update range="5" set="2" />
+                </period>
+                <period index="8" plantingAllowed="true">
+                    <update range="1-3" add="1" />
+                    <update range="5" set="2" />
+                </period>
+                <period index="9" plantingAllowed="true">
+                    <update range="1" add="1" />
+                    <update range="4" set="3" /> <!-- knock back due to winter -->
+                </period>
+                <period index="10">
+                </period>
+                <period index="11">
+                </period>
+                <period index="12">
+                    <update range="2" add="1" />
+                </period>
+            </fruit>
+            <!-- prairietall has 4 states -->
+            <fruit name="PRAIRIETALL" initialState="1-4">
+                <period index="1" plantingAllowed="true">
+                    <update range="1" add="1" />
+                    <update range="3" add="1" />
+                    <update range="5" set="2" />
+                </period>
+                <period index="2" plantingAllowed="true">
+                    <update range="1-3" add="1" />
+                    <update range="5" set="2" />
+                </period>
+                <period index="3" plantingAllowed="true">
+                    <update range="1-3" add="1" />
+                    <update range="5" set="2" />
+                </period>
+                <period index="4" plantingAllowed="true">
+                    <update range="1-3" add="1" />
+                    <update range="5" set="2" />
+                </period>
+                <period index="5" plantingAllowed="true">
+                    <update range="1-3" add="1" />
+                    <update range="5" set="2" />
+                </period>
+                <period index="6" plantingAllowed="true">
+                    <update range="1-3" add="1" />
+                    <update range="5" set="2" />
+                </period>
+                <period index="7" plantingAllowed="true">
+                    <update range="1-3" add="1" />
+                    <update range="5" set="2" />
+                </period>
+                <period index="8" plantingAllowed="true">
+                    <update range="1-3" add="1" />
+                    <update range="5" set="2" />
+                </period>
+                <period index="9" plantingAllowed="true">
+                    <update range="1" add="1" />
+                    <update range="4" set="3" /> <!-- knock back due to winter -->
+                </period>
+                <period index="10">
+                </period>
+                <period index="11">
+                </period>
+                <period index="12">
+                    <update range="2" add="1" />
+                </period>
+            </fruit>
+        </seasonal>
+    </growth>
+
+</installationInstructions>

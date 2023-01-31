@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<modDesc descVersion="65">
+    <author>GMNGjoy</author>
+    <version>1.0.0</version>
+    <title>
+        <en>Prairie Grass</en>
+    </title>
+    <description>
+        <en>
+<![CDATA[This prefab can be added as two new paintable textures to the game: Prairie Grass & Tall Prairie Grass.
+Please see the installation instructions in README.XML for more information
+
+PRAIRIE GRASS FEATURES
+- Mowable with standard mowers directly into Hay
+- 4 growth stages, mowable at 3rd stage just like Meadow grass
+- Two variants Tall and Normal
+- NOT Plantable as a crop
+
+Prairie Grass
+- Grows 20% taller than standard meadow grass
+- Results in 10% more harvest than standard meadow grass.
+- Costs 10% more to paint
+
+Tall Prairie Grass
+- Grows 50% taller than standard meadow grass
+- Results in 20% more harvest than standard meadow grass.
+- Costs 20% more to paint
+]]>
+        </en>
+    </description>
+    <iconFilename>icons/icon_prairieGrass.dds</iconFilename>
+    <multiplayer supported="true" />
+
+    <storeItems>
+        <storeItem xmlFilename="prairie/prairieBrush.xml"/>
+        <storeItem xmlFilename="prairie/prairieBrushTall.xml"/>
+    </storeItems>
+
+    <fruitTypes filename="maps_fruitTypes.xml" />
+    <fillTypes filename="maps_fillTypes.xml" />
+    <growth filename="maps_growth.xml" />
+    
+    <l10n>
+        <text name="shopItem_prairieGrass">
+            <en>Prairie Grass</en>
+        </text>
+        <text name="shopItem_prairieGrassTall">
+            <en>Tall Prairie Grass</en>
+        </text>
+    </l10n>
+</modDesc>

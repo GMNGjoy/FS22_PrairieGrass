@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<map xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://validation.gdn.giants-software.com/xml/fs22/1.5.0.0/fruitTypes.xsd"> 
+    <fruitTypes>
+        <fruitType name="prairie" shownOnMap="false" useForFieldJob="false">
+            <general startStateChannel="0" numStateChannels="4" />
+            <cultivation needsSeeding="false" allowsSeeding="false" directionSnapAngle="0" alignsToSun="false" seedUsagePerSqm="0.03" plantsWeed="false"/>
+            <harvest minHarvestingGrowthState="3" maxHarvestingGrowthState="4" cutState="5" allowsPartialGrowthState="true" literPerSqm="3.7"  />
+            <growth witheredState="4" numGrowthStates="4" growthStateTime="36000000" resetsSpray="true" growthRequiresLime="false" regrows="true" firstRegrowthState="1" />
+            <windrow name="drygrass_windrow" litersPerSqm="4.7" />
+            <options lowSoilDensityRequired="false" increasesSoilDensity="false" consumesLime="false" startSprayState="1" />
+            <cropCare maxWeederState="0" maxWeederHoeState="0" />
+            <mapColors default="0.0423 0.1221 0.0252 1" colorBlind="1.0000 0.9473 0.0369 1"/>
+            <destruction canBeDestroyed="true" />
+            <mulcher state="5" hasChopperGroundLayer="false"/>
+        </fruitType>
+        <fruitType name="prairieTall" shownOnMap="false" useForFieldJob="false">
+            <general startStateChannel="0" numStateChannels="4" />
+            <cultivation needsSeeding="false" allowsSeeding="false" directionSnapAngle="0" alignsToSun="false" seedUsagePerSqm="0.03" plantsWeed="false"/>
+            <harvest minHarvestingGrowthState="3" maxHarvestingGrowthState="4" cutState="5" allowsPartialGrowthState="true" literPerSqm="4.0"  />
+            <growth witheredState="4" numGrowthStates="4" growthStateTime="36000000" resetsSpray="true" growthRequiresLime="false" regrows="true" firstRegrowthState="1" />
+            <windrow name="drygrass_windrow" litersPerSqm="5.24" />
+            <options lowSoilDensityRequired="false" increasesSoilDensity="false" consumesLime="false" startSprayState="1" />
+            <cropCare maxWeederState="0" maxWeederHoeState="0" />
+            <mapColors default="0.0423 0.1221 0.0252 1" colorBlind="1.0000 0.9473 0.0369 1"/>
+            <destruction canBeDestroyed="true" />
+            <mulcher state="5" hasChopperGroundLayer="false"/>
+        </fruitType>
+    </fruitTypes>
+
+    <fruitTypeConverters>
+        <fruitTypeConverter name="MOWER">
+            <converter from="PRAIRIE"   to="DRYGRASS_WINDROW" factor="1.0" windrowFactor="1.0" />
+            <converter from="PRAIRIETALL"   to="DRYGRASS_WINDROW" factor="1.0" windrowFactor="1.0" />
+        </fruitTypeConverter>
+    </fruitTypeConverters>
+</map>

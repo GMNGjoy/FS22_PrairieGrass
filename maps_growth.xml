@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<growth>
+    <seasonal>
+        <!-- prairie has 4 states -->
+        <fruit name="PRAIRIE" initialState="1-4">
+            <period index="1" plantingAllowed="true">
+                <update range="1" add="1" />
+                <update range="3" add="1" />
+                <update range="5" set="2" />
+            </period>
+            <period index="2" plantingAllowed="true">
+                <update range="1-3" add="1" />
+                <update range="5" set="2" />
+            </period>
+            <period index="3" plantingAllowed="true">
+                <update range="1-3" add="1" />
+                <update range="5" set="2" />
+            </period>
+            <period index="4" plantingAllowed="true">
+                <update range="1-3" add="1" />
+                <update range="5" set="2" />
+            </period>
+            <period index="5" plantingAllowed="true">
+                <update range="1-3" add="1" />
+                <update range="5" set="2" />
+            </period>
+            <period index="6" plantingAllowed="true">
+                <update range="1-3" add="1" />
+                <update range="5" set="2" />
+            </period>
+            <period index="7" plantingAllowed="true">
+                <update range="1-3" add="1" />
+                <update range="5" set="2" />
+            </period>
+            <period index="8" plantingAllowed="true">
+                <update range="1-3" add="1" />
+                <update range="5" set="2" />
+            </period>
+            <period index="9" plantingAllowed="true">
+                <update range="1" add="1" />
+                <update range="4" set="3" /> <!-- knock back due to winter -->
+            </period>
+            <period index="10">
+            </period>
+            <period index="11">
+            </period>
+            <period index="12">
+                <update range="2" add="1" />
+            </period>
+        </fruit>
+        <!-- prairietall has 4 states -->
+        <fruit name="PRAIRIETALL" initialState="1-4">
+            <period index="1" plantingAllowed="true">
+                <update range="1" add="1" />
+                <update range="3" add="1" />
+                <update range="5" set="2" />
+            </period>
+            <period index="2" plantingAllowed="true">
+                <update range="1-3" add="1" />
+                <update range="5" set="2" />
+            </period>
+            <period index="3" plantingAllowed="true">
+                <update range="1-3" add="1" />
+                <update range="5" set="2" />
+            </period>
+            <period index="4" plantingAllowed="true">
+                <update range="1-3" add="1" />
+                <update range="5" set="2" />
+            </period>
+            <period index="5" plantingAllowed="true">
+                <update range="1-3" add="1" />
+                <update range="5" set="2" />
+            </period>
+            <period index="6" plantingAllowed="true">
+                <update range="1-3" add="1" />
+                <update range="5" set="2" />
+            </period>
+            <period index="7" plantingAllowed="true">
+                <update range="1-3" add="1" />
+                <update range="5" set="2" />
+            </period>
+            <period index="8" plantingAllowed="true">
+                <update range="1-3" add="1" />
+                <update range="5" set="2" />
+            </period>
+            <period index="9" plantingAllowed="true">
+                <update range="1" add="1" />
+                <update range="4" set="3" /> <!-- knock back due to winter -->
+            </period>
+            <period index="10">
+            </period>
+            <period index="11">
+            </period>
+            <period index="12">
+                <update range="2" add="1" />
+            </period>
+        </fruit>
+    </seasonal>
+</growth>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<paintableFoliages>
+    <paintableFoliage layerName="prairie" startChannel="0" numStateChannels="4" />
+    <paintableFoliage layerName="prairieTall" startChannel="0" numStateChannels="4" />
+</paintableFoliages>
