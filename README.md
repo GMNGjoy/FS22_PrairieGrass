@@ -1,5 +1,5 @@
 # Prairie Grass for FS22
-This mod will add a paintable Prairie Grass texture to your Paintable -> Plants menu, allowing you to paint in a new type of specialized meadow grass that will mow directly into Hay.
+This mod / prefab will add a paintable Prairie Grass texture to your Paintable -> Plants menu, allowing you to paint in a new type of specialized meadow grass that will mow directly into Hay.
 
 ## Prairie Grass Features
 - Mowable with standard mowers directly into Hay
@@ -96,3 +96,14 @@ XML based instructions: [README.xml](README.xml) or the step by step instruction
 _Note_ for all of the above files - if you do not have a custom version of the same file currently in your map and are referring to the basegame `$data/maps/` files... to use this mod, you will have to have map specific versions of each of those files. 
 
 Once that is done, yous hould not only have the paintable meadow foliage in game, but you'll also have `prairie` and `prairieTall` in your foliage layers to use in-game.
+
+## Screenshots
+
+![Prairie Grass](/_screenshots/prairieGrass.png)
+_Prairie Grass (normal) in an open meadow, from player perspective_
+
+![Prairie Grass Tall](/_screenshots/prairieGrassTall.png)
+_Prairie Grass Tall in an open meadow, from player perspective_
+
+![Prairie Grass after being Mown](/_screenshots/prairieGrass_mow.png)
+_From left to right, Prairie Grass Tall, Prairie Grass, and Meadow after being mown with a Krone BigM_
